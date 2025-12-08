@@ -2,7 +2,10 @@
 const ExamData = [
     {
         id: 1,
-        audio_url: 'audio/C01-1.mp3', // 確保此路徑與您的音檔位置一致！
+        audio_url: 'audio/C01-1.mp3',
+    },{
+        id: 1,
+        number: 1,
         type: 'single',
         question_text: "根據講座內容，為何教授特別提到木星的『大紅斑』？",
         options: [
@@ -15,7 +18,7 @@ const ExamData = [
     },
     {
         id: 2,
-        audio_url: 'audio/C01-1.mp3', // 繼續使用相同的音檔
+        number: 2,
         type: 'single',
         question_text: "學生提出的問題，最可能引導教授討論哪個話題？",
         options: [
@@ -28,7 +31,7 @@ const ExamData = [
     },
     {
         id: 3,
-        audio_url: 'audio/C01-1.mp3', 
+        number: 3,
         type: 'multiple',
         question_text: "下列哪兩項因素，有助於維持大紅斑的巨大規模？ (選擇兩項)",
         options: [
@@ -126,17 +129,15 @@ function startTest() {
 
 /** 4. 載入並顯示當前題目 */
 function loadQuestion(index) {
+    
     const question = ExamData[index];
     currentQuestionIndex = index;
-    currentQuestionDisplay.textContent = index + 1;
+    
     
     // A. 處理音頻
-    if (question.audio_url) {
-        // 只有當音檔 URL 改變時才重新設定並播放
-        if (question.audio_url !== audioPlayer.src) {
-            audioPlayer.src = question.audio_url;
-            audioPlayer.load();
-        }
+    if (index % 10 == 0){
+        audioPlayer.src = question.audio_url;
+        audioPlayer.load();
         
         // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
         audioPlayer.play().catch(e => {
@@ -150,53 +151,50 @@ function loadQuestion(index) {
         nextButton.disabled = true; // 播放時禁用 Next
         document.getElementById('audio-prompt').textContent = "正在播放中... 請專心聆聽。";
 
+        loadQuestion(currentQuestionIndex + 1);
     } else {
-        // 相同音檔下的連續問題，直接顯示問題區
-        audioSection.style.display = 'none';
-        questionSection.style.display = 'block';
-        nextButton.disabled = false;
-    }
-
-    // B. 載入問題文本
-    questionTextElement.textContent = question.question_text;
-    document.getElementById('q-number-display').textContent = index + 1;
-    optionsArea.innerHTML = ''; // 清空舊選項
-
-    // C. 動態生成選項 (單選或多選)
-    const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
+        // B. 載入問題文本
+        currentQuestionDisplay.textContent = question.number;
+        questionTextElement.textContent = question.question_text;
+        document.getElementById('q-number-display').textContent = index + 1;
+        optionsArea.innerHTML = ''; // 清空舊選項
     
-    question.options.forEach((optionText, i) => {
-        const optionLetter = String.fromCharCode(65 + i); // A, B, C, D...
+        // C. 動態生成選項 (單選或多選)
+        const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
         
-        const optionItem = document.createElement('div');
-        optionItem.className = 'option-item';
-        
-        const input = document.createElement('input');
-        input.type = inputType;
-        input.id = `option${optionLetter}`;
-        input.name = `answer-${question.id}`; // 每個問題使用不同的 name
-        input.value = optionLetter;
-
-        const label = document.createElement('label');
-        label.htmlFor = `option${optionLetter}`;
-        label.textContent = optionText;
-
-        // 檢查是否有儲存的答案，並設定為 checked
-        const savedAnswer = userAnswers[question.id];
-        if (savedAnswer) {
-            if (inputType === 'radio' && savedAnswer === optionLetter) {
-                input.checked = true;
-            } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
-                input.checked = true;
+        question.options.forEach((optionText, i) => {
+            const optionLetter = String.fromCharCode(65 + i); // A, B, C, D...
+            
+            const optionItem = document.createElement('div');
+            optionItem.className = 'option-item';
+            
+            const input = document.createElement('input');
+            input.type = inputType;
+            input.id = `option${optionLetter}`;
+            input.name = `answer-${question.id}`; // 每個問題使用不同的 name
+            input.value = optionLetter;
+    
+            const label = document.createElement('label');
+            label.htmlFor = `option${optionLetter}`;
+            label.textContent = optionText;
+    
+            // 檢查是否有儲存的答案，並設定為 checked
+            const savedAnswer = userAnswers[question.id];
+            if (savedAnswer) {
+                if (inputType === 'radio' && savedAnswer === optionLetter) {
+                    input.checked = true;
+                } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
+                    input.checked = true;
+                }
             }
-        }
-        
-        optionItem.append(input, label);
-        optionsArea.appendChild(optionItem);
-        
-        // 點擊整個選項區塊也能選中 input
-        optionItem.onclick = () => input.click();
-    });
+            
+            optionItem.append(input, label);
+            optionsArea.appendChild(optionItem);
+            
+            // 點擊整個選項區塊也能選中 input
+            optionItem.onclick = () => input.click();
+        });
+    }
 }
 
 
