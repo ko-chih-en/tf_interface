@@ -8,10 +8,6 @@ const ListenData = [
 const ExamData = [
     {
         id: 1,
-        audio_url: 'audio/C1.mp3',
-    },
-    {
-        id: 1,
         number: 1,
         type: 'single',
         question_text: "根據講座內容，為何教授特別提到木星的『大紅斑』？",
@@ -156,6 +152,7 @@ function Listen(index) {
     });
 
     audioPlayer.onended = function() {
+        alert("進入問題。");
         GoToQuestion(currentQuestionIndex);
     };
 }
@@ -171,7 +168,6 @@ function Qusetion(index) {
 
     questionSection.style.display = 'block';
     audioSection.style.display = 'none';
-    alert("進入問題。");
     
     // B. 載入問題文本
     currentQuestionDisplay.textContent = question.number;
