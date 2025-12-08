@@ -104,14 +104,6 @@ function setupAudioPlayer() {
         const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
         progressBar.style.width = `${percentage}%`;
     };
-
-    // 監聽音頻播放結束事件
-    audioPlayer.onended = function() {
-        // 音檔結束後，顯示問題區塊
-        questionSection.style.display = 'block';
-        audioSection.style.display = 'none';
-        nextButton.disabled = false; // 啟用 Next 按鈕
-    };
 }
 
 /** 3. 處理開始按鈕點擊事件，啟動考試流程 */
@@ -153,6 +145,8 @@ function loadQuestion(index) {
         nextButton.disabled = true; // 播放時禁用 Next
         document.getElementById('audio-prompt').textContent = "正在播放中... 請專心聆聽。";
 
+        setupAudioPlayer();
+        
         loadQuestion(currentQuestionIndex + 1);
     } else {
         // B. 載入問題文本
@@ -245,9 +239,6 @@ function initializeTest() {
     
     // 設置歡迎頁面的按鈕監聽器
     startButton.addEventListener('click', startTest); 
-    
-    // 設置音頻播放器的進度與結束邏輯
-    setupAudioPlayer();
 
     // 初始狀態：顯示歡迎頁面，隱藏考試介面
     welcomePage.style.display = 'block';
