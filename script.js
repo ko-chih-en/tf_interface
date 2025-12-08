@@ -131,7 +131,7 @@ function loadQuestion(index) {
     currentQuestionDisplay.textContent = index + 1;
 
     // A. 處理音頻
-    if (question.audio_url && question.audio_url !== audioPlayer.src) {
+    if (index %10 == 0) {
         // 只有當音檔 URL 改變時才重新設定並播放
         audioPlayer.src = question.audio_url;
         audioSection.style.display = 'block';
@@ -145,7 +145,6 @@ function loadQuestion(index) {
         audioSection.style.display = 'none';
         questionSection.style.display = 'block';
         nextButton.disabled = false;
-    }
 
     // B. 載入問題文本
     questionTextElement.textContent = question.question_text;
@@ -187,6 +186,7 @@ function loadQuestion(index) {
         // 點擊整個選項區塊也能選中 input
         optionItem.onclick = () => input.click();
     });
+    }
 }
 
 
