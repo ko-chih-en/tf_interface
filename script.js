@@ -1,8 +1,14 @@
 // --- 模擬考試數據 (ExamData) ---
+const ListenData = [
+    {
+        audio_url: 'audio/C1.mp3',
+    }
+];
+
 const ExamData = [
     {
         id: 1,
-        audio_url: 'audio/C01-1.mp3',
+        audio_url: 'audio/C1.mp3',
     },
     {
         id: 1,
@@ -48,8 +54,8 @@ const ExamData = [
 // --- 應用程式狀態管理 ---
 let currentQuestionIndex = 0;
 let userAnswers = {}; 
-const totalQuestions = 6;
-let timeLeft = 1 * 60; // 30分鐘 (秒)
+let totalQuestions = 11;
+let timeLeft = 6.5 * 60; // 30分鐘 (秒)
 let timerInterval;
 
 // --- DOM 元素選擇器 ---
@@ -106,12 +112,12 @@ function setupAudioPlayer() {
         progressBar.style.width = `${percentage}%`;
     };
 
-    audioPlayer.onended = function() {
+    //audioPlayer.onended = function() {
         // 音檔結束後，顯示問題區塊
-        questionSection.style.display = 'block';
-        audioSection.style.display = 'none';
-        nextButton.disabled = false; // 啟用 Next 按鈕
-    };
+    //    questionSection.style.display = 'block';
+    //    audioSection.style.display = 'none';
+    //    nextButton.disabled = false; // 啟用 Next 按鈕
+    //};
 }
 
 /** 3. 處理開始按鈕點擊事件，啟動考試流程 */
@@ -125,82 +131,86 @@ function startTest() {
     startTimer(0);
     
     // 載入並播放第一道題目 (應順利播放，因為使用者已互動)
-    loadQuestion(0);
+    Listen(0);
 }
 
 
 /** 4. 載入並顯示當前題目 */
-function loadQuestion(index) {
+function Listen(index) {
+    
+    const question = ListenData[index];
+    currentQuestionIndex = index;
+    
+    audioPlayer.src = question.audio_url;
+    audioPlayer.load();
+    
+    // 顯示音頻區塊
+    audioSection.style.display = 'block';
+    questionSection.style.display = 'none';
+    nextButton.disabled = true; // 播放時禁用 Next
+    
+    // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
+    audioPlayer.play().catch(e => {
+        console.error("Audio playback error:", e);
+        alert("音檔無法播放。請確認音檔路徑或重新載入頁面。");
+    });
+
+    audioPlayer.onended = function() {
+        GoToQuestion(currentQuestionIndex);
+    };
+}
+
+function GoToQuestion(index) {
+    Question(index);
+}
+
+function Qusetion(index) {
     
     const question = ExamData[index];
     currentQuestionIndex = index;
     
-    
-    // A. 處理音頻
-    if (index % 10 == 0){
-        audioPlayer.src = question.audio_url;
-        audioPlayer.load();
-        
-        // 顯示音頻區塊
-        audioSection.style.display = 'block';
-        questionSection.style.display = 'none';
-        nextButton.disabled = true; // 播放時禁用 Next
-        
-        // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
-        audioPlayer.play().catch(e => {
-            console.error("Audio playback error:", e);
-            alert("音檔無法播放。請確認音檔路徑或重新載入頁面。");
-        });
+    // B. 載入問題文本
+    currentQuestionDisplay.textContent = question.number;
+    questionTextElement.textContent = question.question_text;
+    document.getElementById('q-number-display').textContent = index + 1;
+    optionsArea.innerHTML = ''; // 清空舊選項
 
-        audioPlayer.onended = function() {
-            // 音檔結束後，進入題目
-            loadQuestion(currentQuestionIndex + 1);
-        };
-    } else {
-        // B. 載入問題文本
-        currentQuestionDisplay.textContent = question.number;
-        questionTextElement.textContent = question.question_text;
-        document.getElementById('q-number-display').textContent = index + 1;
-        optionsArea.innerHTML = ''; // 清空舊選項
+    // C. 動態生成選項 (單選或多選)
+    const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
     
-        // C. 動態生成選項 (單選或多選)
-        const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
+    question.options.forEach((optionText, i) => {
+        const optionLetter = String.fromCharCode(65 + i); // A, B, C, D...
         
-        question.options.forEach((optionText, i) => {
-            const optionLetter = String.fromCharCode(65 + i); // A, B, C, D...
-            
-            const optionItem = document.createElement('div');
-            optionItem.className = 'option-item';
-            
-            const input = document.createElement('input');
-            input.type = inputType;
-            input.id = `option${optionLetter}`;
-            input.name = `answer-${question.id}`; // 每個問題使用不同的 name
-            input.value = optionLetter;
-    
-            const label = document.createElement('label');
-            label.htmlFor = `option${optionLetter}`;
-            label.textContent = optionText;
-    
-            // 檢查是否有儲存的答案，並設定為 checked
-            const savedAnswer = userAnswers[question.id];
-            if (savedAnswer) {
-                if (inputType === 'radio' && savedAnswer === optionLetter) {
-                    input.checked = true;
-                } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
-                    input.checked = true;
-                }
+        const optionItem = document.createElement('div');
+        optionItem.className = 'option-item';
+        
+        const input = document.createElement('input');
+        input.type = inputType;
+        input.id = `option${optionLetter}`;
+        input.name = `answer-${question.id}`; // 每個問題使用不同的 name
+        input.value = optionLetter;
+
+        const label = document.createElement('label');
+        label.htmlFor = `option${optionLetter}`;
+        label.textContent = optionText;
+
+        // 檢查是否有儲存的答案，並設定為 checked
+        const savedAnswer = userAnswers[question.id];
+        if (savedAnswer) {
+            if (inputType === 'radio' && savedAnswer === optionLetter) {
+                input.checked = true;
+            } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
+                input.checked = true;
             }
-            
-            optionItem.append(input, label);
-            optionsArea.appendChild(optionItem);
-            
-            // 點擊整個選項區塊也能選中 input
-            optionItem.onclick = () => input.click();
+        }
+        
+        optionItem.append(input, label);
+        optionsArea.appendChild(optionItem);
+        
+        // 點擊整個選項區塊也能選中 input
+        optionItem.onclick = () => input.click();
         });
-    }
 }
-
 
 /** 5. 處理 Next 按鈕點擊事件 */
 function handleNextQuestion() {
