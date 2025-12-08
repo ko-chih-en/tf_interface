@@ -59,11 +59,11 @@ hr {
     padding: 0 10px;
     font-size: 1.1em;
     font-weight: bold;
-    color: #004d99;
+    color: #dfdfdf;
 }
 
 .timer-display {
-    color: #cc0000;
+    color: #dfdfdf;
 }
 
 /* --- 3. 音頻播放區樣式 --- */
