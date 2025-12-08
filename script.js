@@ -152,7 +152,6 @@ function Listen(index) {
     });
 
     audioPlayer.onended = function() {
-        alert("進入問題。");
         GoToQuestion(currentQuestionIndex);
     };
 }
@@ -165,6 +164,7 @@ function Qusetion(index) {
     
     const question = ExamData[index];
     currentQuestionIndex = index;
+    alert("成功進入問題。");
 
     questionSection.style.display = 'block';
     audioSection.style.display = 'none';
