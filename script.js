@@ -119,7 +119,7 @@ function startTest() {
     
     // 介面切換：隱藏歡迎頁，顯示考試介面
     welcomePage.style.display = 'none';
-    testInterface.style.display = 'flex'; // 使用 flex 確保樣式正常
+    testInterface.style.display = 'block'; // 使用 flex 確保樣式正常
 
     // 啟動計時器
     startTimer(0);
