@@ -48,7 +48,7 @@ const ExamData = [
 // --- 應用程式狀態管理 ---
 let currentQuestionIndex = 0;
 let userAnswers = {}; 
-const totalQuestions = ExamData.length;
+const totalQuestions = 6;
 let timeLeft = 1 * 60; // 30分鐘 (秒)
 let timerInterval;
 
@@ -111,7 +111,6 @@ function setupAudioPlayer() {
         questionSection.style.display = 'block';
         audioSection.style.display = 'none';
         nextButton.disabled = false; // 啟用 Next 按鈕
-        loadQuestion(currentQuestionIndex + 1);
     };
 }
 
@@ -152,6 +151,11 @@ function loadQuestion(index) {
             console.error("Audio playback error:", e);
             alert("音檔無法播放。請確認音檔路徑或重新載入頁面。");
         });
+
+        audioPlayer.onended = function() {
+            // 音檔結束後，進入題目
+            loadQuestion(currentQuestionIndex + 1);
+        };
     } else {
         // B. 載入問題文本
         currentQuestionDisplay.textContent = question.number;
