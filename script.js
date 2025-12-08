@@ -95,7 +95,7 @@ function startTimer() {
 /**
  * 2. 處理音頻播放進度和結束
  */
-function setupAudioPlayer() {
+function setupAudioPlayer(index) {
     // 禁用 Next 按鈕，直到音檔結束
     nextButton.disabled = true;
 
@@ -132,8 +132,9 @@ function loadQuestion(index) {
 
     // A. 處理音頻
     if (index %10 == 0) {
-        // 只有當音檔 URL 改變時才重新設定並播放
-        audioPlayer.src = question.audio_url;
+        setupAudioPlayer(index);
+        
+        audioPlayer.src = ExamData[index].audio_url;
         audioSection.style.display = 'block';
         questionSection.style.display = 'none';
         nextButton.disabled = true; // 播放時禁用 Next
@@ -239,9 +240,6 @@ function initializeTest() {
     
     // 1. 啟動計時器
     startTimer();
-    
-    // 2. 設置音頻播放器邏輯
-    setupAudioPlayer();
     
     // 3. 載入第一道題目
     loadQuestion(0);
