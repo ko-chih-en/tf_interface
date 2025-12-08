@@ -128,7 +128,9 @@ function setupAudioPlayer(index) {
 function loadQuestion(index) {
     // A. 處理音頻
     if (index %10 == 0) {
-        audioPlayer.src = ExamData[index].audio_url;
+        const question = ExamData[index];
+        
+        audioPlayer.src = question.audio_url;
         nextButton.disabled = true; // 播放時禁用 Next
 
         audioPlayer.load(); // 載入音頻
