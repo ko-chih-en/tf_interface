@@ -1,6 +1,6 @@
 /* --- 1. 全域重置與基礎樣式 --- */
 body {
-    font-family: 'Arial', 'Helvetica', sans-serif; /* 考試介面常用的清晰字體 */
+    font-family: 'Open Sans', 'Helvetica', sans-serif; /* 考試介面常用的清晰字體 */
     background-color: #f4f4f4; /* 淺灰色背景 */
     color: #333;
     margin: 0;
