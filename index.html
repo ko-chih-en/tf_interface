@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOEFL 聽力模擬測驗</title>
+    <title>toefl ibt mock test</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
     <div id="welcome-page" class="welcome-container">
-        <h1>TOEFL 聽力模擬測驗</h1>
-        <p>點擊下方按鈕開始載入測試。一旦開始，音檔將會自動播放，請專心聽講。</p>
+        <h1>Welcome to TOEFL ibt Listening Section Mock Test</h1>
+        <p>Click the Button below to start the test.</p>
         <button id="start-button" class="btn btn-primary btn-large">
-            開始聽力測驗 (Start Test)
+            Start Test
         </button>
     </div>
 
@@ -20,10 +20,10 @@
         
         <header class="test-header">
             <div class="timer-display">
-                ⏱️ 剩餘時間: <span id="timer">00:00</span>
+                <span id="timer">00:00</span>
             </div>
             <div class="question-status">
-                題目: <span id="current-question">1</span> / <span id="total-questions">30</span>
+                Listening | <span id="current-question">1</span> / <span id="total-questions">30</span>
             </div>
         </header>
         
@@ -32,7 +32,6 @@
         <main class="content-area">
             
             <section id="audio-section" class="section audio-player-section">
-                <h3>聽力文章</h3>
                 <div class="audio-control-container">
                     <audio id="audioPlayer" src="" preload="auto"></audio> 
                     
@@ -40,14 +39,13 @@
                         <div id="progressBar" class="progress-fill"></div>
                     </div>
                     
-                    <p id="audio-prompt">正在載入音檔，請稍候...</p>
                 </div>
             </section>
             
             <section id="question-section" class="section question-options-section" style="display: none;">
                 
                 <div class="question-text-area">
-                    <h4>問題 <span id="q-number-display">1</span>:</h4>
+                    <h4>Question <span id="q-number-display">1</span>:</h4>
                     <p id="question-text">（這裡會載入問題文本...）</p>
                 </div>
 
@@ -62,11 +60,11 @@
 
         <footer class="test-footer">
             <button id="next-button" class="btn btn-primary" disabled>
-                下一題 (Next)
+                Next
             </button>
             
             <div id="error-message" class="error-msg" style="display: none;">
-                請選擇一個答案才能進入下一題。
+                You should select 1 option to go on to the next question.
             </div>
         </footer>
 
