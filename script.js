@@ -157,11 +157,10 @@ function Listen(index) {
 }
 
 function GoToQuestion(index) {
-    alert("成功進入GoToQuestion。");
     Question(index);
 }
 
-function Qusetion(index) {
+function Question(index) {
     
     const question = ExamData[index];
     currentQuestionIndex = index;
