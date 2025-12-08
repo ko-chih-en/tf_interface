@@ -48,7 +48,7 @@ const ExamData = [
 let currentQuestionIndex = 0;
 let userAnswers = {}; // 儲存使用者答案：{1: 'D', 2: 'C', ...}
 const totalQuestions = ExamData.length;
-let timeLeft = 17 * 60;
+let timeLeft = 10 * 60;
 let timerInterval;
 
 // --- DOM 元素選擇器 ---
@@ -84,9 +84,9 @@ function startTimer() {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
         
-        // 格式化顯示 (例如：05:30)
+        // 格式化顯示 (例如：00:05:30)
         timerElement.textContent = 
-            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         
         timeLeft--;
     }, 1000);
@@ -131,14 +131,10 @@ function loadQuestion(index) {
     currentQuestionDisplay.textContent = index + 1;
 
     // A. 處理音頻
-    if (index %10 == 0) {
-        setupAudioPlayer(index);
-        
+    if (currentQuestionIndex %10 == 0) {
         audioPlayer.src = ExamData[index].audio_url;
-        audioSection.style.display = 'block';
-        questionSection.style.display = 'none';
         nextButton.disabled = true; // 播放時禁用 Next
-        
+
         audioPlayer.load(); // 載入音頻
         audioPlayer.play().catch(e => console.error("Audio playback failed:", e));
     } else {
