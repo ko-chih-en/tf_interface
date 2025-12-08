@@ -2,6 +2,10 @@ const ExamData = [
     {
         id: 1,
         audio_url: 'audio/lecture1.mp3', // 確保音檔路徑正確
+    },
+    {
+        id: 11,
+        audio_url: 'audio/lecture1.mp3', // 確保音檔路徑正確
         type: 'single', // 題目類型：單選 (single) 或 多選 (multiple)
         question_text: "根據講座內容，為何教授特別提到木星的『大紅斑』？",
         options: [
@@ -13,7 +17,7 @@ const ExamData = [
         correct_answer: "D"
     },
     {
-        id: 2,
+        id: 12,
         audio_url: '', // 同一個聽力段落，音檔留空
         type: 'single',
         question_text: "學生提出的問題，最可能引導教授討論哪個話題？",
@@ -26,7 +30,7 @@ const ExamData = [
         correct_answer: "C"
     },
     {
-        id: 3,
+        id: 13,
         audio_url: '',
         type: 'multiple', // 模擬一個多選題
         question_text: "下列哪兩項因素，有助於維持大紅斑的巨大規模？ (選擇兩項)",
