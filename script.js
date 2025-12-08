@@ -136,7 +136,7 @@ function loadQuestion(index) {
         audioPlayer.load(); // 載入音頻
         audioPlayer.play().catch(e => {
             console.error("Audio playback failed:", e);
-            alert("請點擊頁面任意處後再點擊 Next/Start 按鈕開始播放。");
+            alert(`${question.id}%`);
         });
     } else {
         
