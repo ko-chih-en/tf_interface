@@ -3,7 +3,8 @@ const ExamData = [
     {
         id: 1,
         audio_url: 'audio/C01-1.mp3',
-    },{
+    },
+    {
         id: 1,
         number: 1,
         type: 'single',
@@ -104,6 +105,14 @@ function setupAudioPlayer() {
         const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
         progressBar.style.width = `${percentage}%`;
     };
+
+    audioPlayer.onended = function() {
+        // 音檔結束後，顯示問題區塊
+        questionSection.style.display = 'block';
+        audioSection.style.display = 'none';
+        nextButton.disabled = false; // 啟用 Next 按鈕
+        loadQuestion(currentQuestionIndex + 1);
+    };
 }
 
 /** 3. 處理開始按鈕點擊事件，啟動考試流程 */
@@ -143,8 +152,6 @@ function loadQuestion(index) {
             console.error("Audio playback error:", e);
             alert("音檔無法播放。請確認音檔路徑或重新載入頁面。");
         });
-        
-        loadQuestion(currentQuestionIndex + 1);
     } else {
         // B. 載入問題文本
         currentQuestionDisplay.textContent = question.number;
