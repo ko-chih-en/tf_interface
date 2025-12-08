@@ -240,7 +240,7 @@ function initializeTest() {
     setupAudioPlayer();
     
     // 3. 載入第一道題目
-    loadQuestion(0);
+    loadQuestion(1);
 }
 
 // 頁面載入完成後執行初始化
