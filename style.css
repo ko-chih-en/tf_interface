@@ -52,7 +52,17 @@ hr {
 }
 
 /* --- 2. 頂部狀態區 (Header) --- */
-.test-header {
+.test-header1 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #4f4f4f;
+}
+
+.test-header2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,11 +72,12 @@ hr {
     color: #4f4f4f;
 }
 
+/* --- 3. 音頻播放區樣式 --- */
+
 .timer-display {
     color: #4f4f4f;
 }
 
-/* --- 3. 音頻播放區樣式 --- */
 .audio-player-section {
     min-height: 150px;
     text-align: center;
