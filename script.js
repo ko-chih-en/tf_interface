@@ -1,11 +1,11 @@
 const ExamData = [
     {
         id: 1,
-        audio_url: 'audio/lecture1.mp3', // 確保音檔路徑正確
+        audio_url: 'audio/C01-1.mp3', // 確保音檔路徑正確
     },
     {
         id: 11,
-        audio_url: 'audio/lecture1.mp3', // 確保音檔路徑正確
+        audio_url: '', // 確保音檔路徑正確
         type: 'single', // 題目類型：單選 (single) 或 多選 (multiple)
         question_text: "根據講座內容，為何教授特別提到木星的『大紅斑』？",
         options: [
