@@ -44,7 +44,7 @@ const ExamData = [
 let currentQuestionIndex = 0;
 let userAnswers = {}; // 儲存使用者答案：{1: 'D', 2: 'C', ...}
 const totalQuestions = ExamData.length;
-let timeLeft = 30 * 60; // 總時間：30分鐘 (秒)
+let timeLeft = 17 * 60;
 let timerInterval;
 
 // --- DOM 元素選擇器 ---
