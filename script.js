@@ -133,12 +133,6 @@ function loadQuestion(index) {
         audioPlayer.src = question.audio_url;
         audioPlayer.load();
         
-        // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
-        audioPlayer.play().catch(e => {
-            console.error("Audio playback error:", e);
-            alert("音檔無法播放。請確認音檔路徑或重新載入頁面。");
-        });
-
         // 顯示音頻區塊
         audioSection.style.display = 'block';
         questionSection.style.display = 'none';
@@ -146,6 +140,12 @@ function loadQuestion(index) {
         document.getElementById('audio-prompt').textContent = "正在播放中... 請專心聆聽。";
 
         setupAudioPlayer();
+        
+        // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
+        audioPlayer.play().catch(e => {
+            console.error("Audio playback error:", e);
+            alert("音檔無法播放。請確認音檔路徑或重新載入頁面。");
+        });
         
         loadQuestion(currentQuestionIndex + 1);
     } else {
