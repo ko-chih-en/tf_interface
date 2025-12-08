@@ -50,7 +50,7 @@ const ExamData = [
 // --- 應用程式狀態管理 ---
 let currentQuestionIndex = 0;
 let userAnswers = {}; 
-let totalQuestions = 11;
+let totalQuestions = 5;
 let timeLeft = 6.5 * 60; // 30分鐘 (秒)
 let timerInterval;
 
@@ -164,18 +164,18 @@ function Question(index) {
     
     const question = ExamData[index];
     currentQuestionIndex = index;
-    alert("成功進入問題。");
+    nextButton.disabled = false;
 
     questionSection.style.display = 'block';
     audioSection.style.display = 'none';
     
-    // B. 載入問題文本
+    // A. 載入問題文本
     currentQuestionDisplay.textContent = question.number;
     questionTextElement.textContent = question.question_text;
     document.getElementById('q-number-display').textContent = index + 1;
     optionsArea.innerHTML = ''; // 清空舊選項
 
-    // C. 動態生成選項 (單選或多選)
+    // B. 生成選項 (單選或多選)
     const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
     
     question.options.forEach((optionText, i) => {
