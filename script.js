@@ -168,6 +168,10 @@ function Qusetion(index) {
     
     const question = ExamData[index];
     currentQuestionIndex = index;
+
+    questionSection.style.display = 'block';
+    audioSection.style.display = 'none';
+    alert("進入問題。");
     
     // B. 載入問題文本
     currentQuestionDisplay.textContent = question.number;
@@ -242,7 +246,7 @@ function handleNextQuestion() {
     
     // --- 切換到下一題或結束 ---
     if (currentQuestionIndex < totalQuestions - 1) {
-        loadQuestion(currentQuestionIndex + 1);
+        Question(currentQuestionIndex + 1);
     } else {
         // 已經是最後一題
         alert("測驗完成！系統將自動交卷，請查看結果。");
