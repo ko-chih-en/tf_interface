@@ -126,10 +126,6 @@ function setupAudioPlayer(index) {
  * 3. 載入並顯示當前題目
  */
 function loadQuestion(index) {
-    const question = ExamData[index];
-    currentQuestionIndex = index;
-    currentQuestionDisplay.textContent = index + 1;
-
     // A. 處理音頻
     if (currentQuestionIndex %10 == 0) {
         audioPlayer.src = ExamData[index].audio_url;
@@ -138,6 +134,11 @@ function loadQuestion(index) {
         audioPlayer.load(); // 載入音頻
         audioPlayer.play().catch(e => console.error("Audio playback failed:", e));
     } else {
+        
+        const question = ExamData[index];
+        currentQuestionIndex = index;
+        currentQuestionDisplay.textContent = index + 1;
+        
         // 相同音檔下的連續問題，直接顯示問題區
         audioSection.style.display = 'none';
         questionSection.style.display = 'block';
