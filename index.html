@@ -13,8 +13,6 @@
             <div class="question-status">
                 Listening | Question <span id="current-question">1</span> of <span id="total-questions">30</span>
             </div>
-
-            loadQuestion(1);
             
             <div class="timer-display">
                 <span id="timer">00:00</span>
@@ -36,6 +34,9 @@
                     
                     <p id="audio-prompt">請專心聆聽錄音，錄音只播放一次。</p>
                 </div>
+                
+                loadQuestion(1);
+                
             </section>
             
             <section id="question-section" class="section question-options-section" style="display: none;">
