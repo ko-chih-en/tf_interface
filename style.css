@@ -83,9 +83,9 @@ hr {
 }
 
 .custom-progress-bar {
-    width: 80%;
+    width: 50%;
     height: 10px;
-    background-color: #e0e0e0;
+    background-color: #000000;
     border-radius: 5px;
     margin: 20px auto 10px auto;
     overflow: hidden;
