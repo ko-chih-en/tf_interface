@@ -24,17 +24,15 @@
         <main class="content-area">
 
             <section id="audio-section" class="section audio-player-section">
-                <h3>聽力文章</h3>
                 <div class="audio-control-container">
-                    <audio id="audioPlayer" src="" preload="auto"></audio> 
-                    
-                    <div class="custom-progress-bar">
-                        <div id="progressBar" class="progress-fill"></div>
-                    </div>
+                    <button id="start-test-button" class="btn btn-primary" style="margin-top: 20px;">
+                        點擊開始聽力測驗
+                    </button>
                     
                     <p id="audio-prompt">請專心聆聽錄音，錄音只播放一次。</p>
+                    
+                    <audio id="audioPlayer" src="" preload="auto"></audio>
                 </div>
-                
             </section>
             
             <section id="question-section" class="section question-options-section" style="display: none;">
