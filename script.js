@@ -127,7 +127,7 @@ function setupAudioPlayer(index) {
  */
 function loadQuestion(index) {
     // A. 處理音頻
-    if (currentQuestionIndex %10 == 0) {
+    if (index %10 == 0) {
         audioPlayer.src = ExamData[index].audio_url;
         nextButton.disabled = true; // 播放時禁用 Next
 
