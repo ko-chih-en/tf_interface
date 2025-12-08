@@ -1,4 +1,24 @@
 // data.js 的模擬內容 - 實際應用中這會從外部 JSON 載入
+
+const audioPlayer = [
+    document.getElementById('audioPlayer');
+    
+    // 1. 設定音源
+    audioPlayer.src = 'audio/lecture1.mp3'; 
+    audioPlayer.load(); 
+    
+    // 2. 嘗試播放
+    audioPlayer.play()
+        .then(() => {
+            console.log(`成功播放: ${audioUrl}`);
+        })
+        .catch(error => {
+            // 由於安全性考量，許多瀏覽器限制在使用者沒有互動時自動播放音檔
+            console.error("播放失敗，可能被瀏覽器阻止:", error);
+            // 這裡可以加入使用者提示，讓使用者點擊開始鍵或播放鍵
+        });
+]
+
 const ExamData = [
     {
         id: 1,
