@@ -7,31 +7,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="test-container">
+    
+    <div id="welcome-page" class="welcome-container">
+        <h1>TOEFL 聽力模擬測驗</h1>
+        <p>點擊下方按鈕開始載入測試。一旦開始，音檔將會自動播放，請專心聽講。</p>
+        <button id="start-button" class="btn btn-primary btn-large">
+            開始聽力測驗 (Start Test)
+        </button>
+    </div>
+
+    <div id="test-interface" class="test-container" style="display: none;">
         
         <header class="test-header">
-            <div class="question-status">
-                Listening | Question <span id="current-question">1</span> of <span id="total-questions">30</span>
-            </div>
-            
             <div class="timer-display">
-                <span id="timer">00:00</span>
+                ⏱️ 剩餘時間: <span id="timer">00:00</span>
+            </div>
+            <div class="question-status">
+                題目: <span id="current-question">1</span> / <span id="total-questions">30</span>
             </div>
         </header>
         
         <hr>
 
         <main class="content-area">
-
+            
             <section id="audio-section" class="section audio-player-section">
+                <h3>聽力文章</h3>
                 <div class="audio-control-container">
-                    <button id="start-test-button" class="btn btn-primary" style="margin-top: 20px;">
-                        點擊開始聽力測驗
-                    </button>
+                    <audio id="audioPlayer" src="" preload="auto"></audio> 
                     
-                    <p id="audio-prompt">請專心聆聽錄音，錄音只播放一次。</p>
+                    <div class="custom-progress-bar">
+                        <div id="progressBar" class="progress-fill"></div>
+                    </div>
                     
-                    <audio id="audioPlayer" src="" preload="auto"></audio>
+                    <p id="audio-prompt">正在載入音檔，請稍候...</p>
                 </div>
             </section>
             
@@ -43,7 +52,6 @@
                 </div>
 
                 <div id="options-area" class="options-list">
-                    
                 </div>
                 
             </section>
