@@ -72,7 +72,7 @@ const errorMessage = document.getElementById('error-message');
 // --- 核心功能函式 ---
 
 /** 1. 格式化並啟動計時器 */
-function startTimer() {
+function startTimer(go) {
     totalQuestionsDisplay.textContent = totalQuestions;
     
     // 檢查是否已經有計時器在運行
@@ -89,9 +89,11 @@ function startTimer() {
         const seconds = timeLeft % 60;
         
         timerElement.textContent = 
-            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         
-        timeLeft--;
+        if (go){
+            timeLeft--;
+        }
     }, 1000);
 }
 
@@ -120,7 +122,7 @@ function startTest() {
     testInterface.style.display = 'flex'; // 使用 flex 確保樣式正常
 
     // 啟動計時器
-    startTimer();
+    startTimer(0);
     
     // 載入並播放第一道題目 (應順利播放，因為使用者已互動)
     loadQuestion(0);
