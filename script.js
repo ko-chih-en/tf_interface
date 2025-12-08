@@ -137,7 +137,6 @@ function loadQuestion(index) {
         audioSection.style.display = 'block';
         questionSection.style.display = 'none';
         nextButton.disabled = true; // 播放時禁用 Next
-        document.getElementById('audio-prompt').textContent = "正在播放中... 請專心聆聽。";
         
         // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
         audioPlayer.play().catch(e => {
