@@ -132,7 +132,10 @@ function loadQuestion(index) {
         nextButton.disabled = true; // 播放時禁用 Next
 
         audioPlayer.load(); // 載入音頻
-        audioPlayer.play().catch(e => console.error("Audio playback failed:", e));
+        audioPlayer.play().catch(e => {
+            console.error("Audio playback failed:", e);
+            alert("請點擊頁面任意處後再點擊 Next/Start 按鈕開始播放。");
+        });
     } else {
         
         const question = ExamData[index];
