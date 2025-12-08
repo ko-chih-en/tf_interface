@@ -132,12 +132,20 @@ function loadQuestion(index) {
         
         audioPlayer.src = question.audio_url;
         nextButton.disabled = true; // 播放時禁用 Next
-
-        audioPlayer.load(); // 載入音頻
-        audioPlayer.play().catch(e => {
-            console.error("Audio playback failed:", e);
-            alert(audioPlayer.src);
+        // 1. 監聽音檔準備好播放的事件
+        audioPlayer.addEventListener('canplaythrough', function attemptPlay() {
+            audioPlayer.play().catch(e => {
+                console.error("Audio playback failed (Autoplay prevented):", e);
+                // 提示使用者點擊
+                alert("音檔路徑正確，但瀏覽器阻止了自動播放。請點擊網頁任意處或按鈕後重試。"); 
+            });
+            
+            // 播放完成後，移除這個監聽器，避免重複執行
+            audioPlayer.removeEventListener('canplaythrough', attemptPlay);
         });
+        
+        // 2. 載入音頻
+        audioPlayer.load();
     } else {
         
         const question = ExamData[index];
