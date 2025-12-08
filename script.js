@@ -138,8 +138,6 @@ function loadQuestion(index) {
         questionSection.style.display = 'none';
         nextButton.disabled = true; // 播放時禁用 Next
         document.getElementById('audio-prompt').textContent = "正在播放中... 請專心聆聽。";
-
-        setupAudioPlayer();
         
         // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
         audioPlayer.play().catch(e => {
@@ -240,6 +238,9 @@ function initializeTest() {
     // 設置歡迎頁面的按鈕監聽器
     startButton.addEventListener('click', startTest); 
 
+    // 設置音頻播放器的進度與結束邏輯
+    setupAudioPlayer();
+    
     // 初始狀態：顯示歡迎頁面，隱藏考試介面
     welcomePage.style.display = 'block';
     testInterface.style.display = 'none';
