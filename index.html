@@ -19,12 +19,12 @@
     <div id="test-interface" class="test-container" style="display: none;">
         
         <header class="test-header">
-            <div class="question-status">
-                Listening | <span id="current-question">1</span> / <span id="total-questions">30</span>
-            </div>
+            <button id="next-button" class="btn btn-primary" disabled>
+                Next
+            </button>
             
-            <div class="timer-display">
-                <span id="timer">00:00</span>
+            <div id="error-message" class="error-msg" style="display: none;">
+                You should select 1 option to go on to the next question.
             </div>
         </header>
         
@@ -33,6 +33,16 @@
         <main class="content-area">
             
             <section id="audio-section" class="section audio-player-section">
+                <h4>
+                    <div class="question-status">
+                        Listening
+                    </div>
+                    
+                    <div class="timer-display">
+                        <span id="timer">00:00:00</span>
+                    </div>
+                </h4>
+                
                 <div class="audio-control-container">
                     <audio id="audioPlayer" src="" preload="auto"></audio> 
                     
@@ -44,9 +54,18 @@
             </section>
             
             <section id="question-section" class="section question-options-section" style="display: none;">
+
+                <h4>
+                    <div class="question-status">
+                        Listening | Question<span id="current-question">1</span> out of <span id="total-questions">30</span>
+                    </div>
+                    
+                    <div class="timer-display">
+                        <span id="timer">00:00:00</span>
+                    </div>
+                </h4>
                 
                 <div class="question-text-area">
-                    <h4>Question <span id="q-number-display">1</span>:</h4>
                     <p id="question-text">（這裡會載入問題文本...）</p>
                 </div>
 
@@ -60,13 +79,7 @@
         <hr>
 
         <footer class="test-footer">
-            <button id="next-button" class="btn btn-primary" disabled>
-                Next
-            </button>
             
-            <div id="error-message" class="error-msg" style="display: none;">
-                You should select 1 option to go on to the next question.
-            </div>
         </footer>
 
     </div>
