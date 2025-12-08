@@ -1,0 +1,168 @@
+/* --- 1. 全域重置與基礎樣式 --- */
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif; /* 考試介面常用的清晰字體 */
+    background-color: #f4f4f4; /* 淺灰色背景 */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* 讓介面居中 */
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.test-container {
+    width: 90%;
+    max-width: 1000px; /* 限制最大寬度，避免在超寬螢幕上失真 */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+/* --- 2. 頂部狀態區 (Header) --- */
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #004d99; /* 考試介面常見的藍色調 */
+}
+
+.timer-display {
+    color: #cc0000; /* 計時器使用醒目的紅色 */
+}
+
+/* --- 3. 中間內容區 (Main Content) --- */
+.content-area {
+    padding: 10px;
+}
+
+.section h3, .section h4 {
+    color: #004d99;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+/* --- 4. 音頻播放區樣式 --- */
+.audio-player-section {
+    min-height: 150px; /* 確保內容區塊不會太小 */
+    text-align: center;
+}
+
+.audio-control-container {
+    padding: 20px;
+    border: 1px dashed #aaa;
+    margin-top: 15px;
+}
+
+#audioPlayer {
+    /* 隱藏原生播放器，改用自定義進度條 */
+    display: none; 
+}
+
+.custom-progress-bar {
+    width: 80%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin: 20px auto 10px auto;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%; /* 初始為 0%，由 JS 動態更新 */
+    background-color: #00a65a; /* 進度條綠色 */
+    transition: width 0.5s ease-out; /* 平滑的進度條動畫 */
+}
+
+#audio-prompt {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* --- 5. 問題與選項區樣式 --- */
+.question-text-area {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 選項之間的間距 */
+}
+
+.option-item {
+    border: 1px solid #ccc;
+    padding: 12px 15px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+/* 滑鼠懸停效果 */
+.option-item:hover {
+    background-color: #f0f8ff; 
+    border-color: #004d99;
+}
+
+/* 讓 Label 和 Input 保持對齊 */
+.option-item input[type="radio"], 
+.option-item input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2); /* 讓點選框稍微大一點 */
+}
+
+.option-item label {
+    display: inline-block;
+    cursor: pointer;
+    width: calc(100% - 30px); /* 讓 Label 佔滿剩餘空間，方便點擊 */
+}
+
+/* --- 6. 底部控制區 (Footer) --- */
+.test-footer {
+    display: flex;
+    justify-content: flex-end; /* 按鈕靠右對齊 */
+    padding: 10px 10px 0 10px;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: #004d99;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover:not([disabled]) {
+    background-color: #003366;
+}
+
+/* 按鈕禁用狀態 */
+.btn-primary[disabled] {
+    background-color: #aaa;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.error-msg {
+    color: red;
+    font-weight: bold;
+    margin-right: 20px;
+}
