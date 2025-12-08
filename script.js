@@ -157,6 +157,7 @@ function Listen(index) {
 }
 
 function GoToQuestion(index) {
+    alert("成功進入GoToQuestion。");
     Question(index);
 }
 
