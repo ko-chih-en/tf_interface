@@ -172,10 +172,7 @@ function Question(index) {
     // A. 載入問題文本
     currentQuestionDisplay.textContent = question.number;
     questionTextElement.textContent = question.question_text;
-    document.getElementById('q-number-display').textContent = index + 1;
-    alert("變數設定完成1");
     optionsArea.innerHTML = ''; // 清空舊選項
-    alert("變數設定完成2");
 
     // B. 生成選項 (單選或多選)
     const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
