@@ -83,9 +83,13 @@ hr {
     text-align: center;
 }
 
+.image-container {
+    padding: 20px;
+    margin-top: 15px;
+}
+
 .audio-control-container {
     padding: 20px;
-    border: 1px dashed #aaa;
     margin-top: 15px;
 }
 
