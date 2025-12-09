@@ -123,7 +123,7 @@ function startTest() {
     timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     startTimer();
-    minus = 0;
+    minus = 1;
     
     // 載入並播放第一道題目 (應順利播放，因為使用者已互動)
     Listen(0);
