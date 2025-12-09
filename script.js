@@ -53,6 +53,7 @@ let userAnswers = {};
 let totalQuestions = 5;
 let timeLeft = 6.5 * 60; // 30分鐘 (秒)
 let timerInterval;
+let minus = 0;
 
 // --- DOM 元素選擇器 ---
 const welcomePage = document.getElementById('welcome-page');
@@ -75,7 +76,7 @@ const errorMessage = document.getElementById('error-message');
 // --- 核心功能函式 ---
 
 /** 1. 格式化並啟動計時器 */
-function startTimer(go) {
+function startTimer() {
     totalQuestionsDisplay.textContent = totalQuestions;
     
     // 檢查是否已經有計時器在運行
@@ -91,7 +92,7 @@ function startTimer(go) {
         timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
         
-        timeLeft = timeLeft - 1;
+        timeLeft = timeLeft - minus;
     }, 1000);
 }
 
@@ -121,7 +122,8 @@ function startTest() {
     // 啟動計時器
     timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
-    startTimer(0);
+    startTimer();
+    minus = 0;
     
     // 載入並播放第一道題目 (應順利播放，因為使用者已互動)
     Listen(0);
@@ -144,7 +146,7 @@ function Listen(index) {
     
     timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
-    startTimer(0);
+    minus = 0;
     
     // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
     audioPlayer.play().catch(e => {
@@ -161,7 +163,7 @@ function GoToQuestion(index) {
     Question(index);
     timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
-    startTimer(0);
+    minus = 0;
 }
 
 function Question(index) {
@@ -174,7 +176,7 @@ function Question(index) {
     audioSection.style.display = 'none';
     timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
-    startTimer(1);
+    minus = 1;
     
     // A. 載入問題文本
     currentQuestionDisplay.textContent = question.number;
