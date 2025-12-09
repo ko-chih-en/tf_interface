@@ -195,16 +195,16 @@ function Question(index) {
         label.textContent = optionText;
 
         // 檢查是否有儲存的答案，並設定為 checked
-        const savedAnswer = userAnswers[question.id];
-        if (savedAnswer) {
-            if (inputType === 'radio' && savedAnswer === optionLetter) {
-                input.checked = true;
-            } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
-                input.checked = true;
-            }
-        }
+        //const savedAnswer = userAnswers[question.id];
+        //if (savedAnswer) {
+        //    if (inputType === 'radio' && savedAnswer === optionLetter) {
+        //        input.checked = true;
+        //    } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
+        //        input.checked = true;
+        //    }
+        //}
 
-        alert("變數設定完成");
+        //alert("變數設定完成");
         
         optionItem.append(input, label);
         optionsArea.appendChild(optionItem);
