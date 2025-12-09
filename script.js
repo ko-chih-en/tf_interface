@@ -2,6 +2,7 @@
 const ListenData = [
     {
         audio_url: 'audio/C1.mp3',
+        image_url: 'image/cpm/01.png'
     }
 ];
 
@@ -96,6 +97,7 @@ const questionTextElement = document.getElementById('question-text');
 const optionsArea = document.getElementById('options-area');
 const nextButton = document.getElementById('next-button');
 const audioPlayer = document.getElementById('audioPlayer');
+const imagePlayer = document.getElementById('imagePlayer');
 const progressBar = document.getElementById('progressBar');
 const errorMessage = document.getElementById('error-message');
 
@@ -164,6 +166,8 @@ function Listen(index) {
     
     const question = ListenData[index];
     currentQuestionIndex = index;
+
+    imagePlayer.src = question.image_url;
     
     audioPlayer.src = question.audio_url;
     audioPlayer.load();
