@@ -87,16 +87,11 @@ function startTimer(go) {
             alert("考試時間到！系統將自動交卷。");
             return;
         }
-
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
         
         timerElement.textContent = 
-            `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
         
-        if (go){
-            timeLeft--;
-        }
+        timeLeft = timeLeft - 1;
     }, 1000);
 }
 
@@ -124,6 +119,8 @@ function startTest() {
     testInterface.style.display = 'block'; // 使用 flex 確保樣式正常
 
     // 啟動計時器
+    timerElement.textContent = 
+            `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     startTimer(0);
     
     // 載入並播放第一道題目 (應順利播放，因為使用者已互動)
@@ -145,6 +142,8 @@ function Listen(index) {
     questionSection.style.display = 'none';
     nextButton.disabled = true; // 播放時禁用 Next
     
+    timerElement.textContent = 
+            `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     startTimer(0);
     
     // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
@@ -160,6 +159,8 @@ function Listen(index) {
 
 function GoToQuestion(index) {
     Question(index);
+    timerElement.textContent = 
+            `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     startTimer(0);
 }
 
@@ -171,6 +172,8 @@ function Question(index) {
 
     questionSection.style.display = 'block';
     audioSection.style.display = 'none';
+    timerElement.textContent = 
+            `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     startTimer(1);
     
     // A. 載入問題文本
