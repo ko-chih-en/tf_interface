@@ -204,7 +204,7 @@ function Question(index) {
         //    }
         //}
 
-        //alert("變數設定完成");
+        alert("變數設定完成");
         
         optionItem.append(input, label);
         optionsArea.appendChild(optionItem);
