@@ -145,6 +145,9 @@ function Listen(index) {
     questionSection.style.display = 'none';
     nextButton.disabled = true; // 播放時禁用 Next
     
+    timerElement.textContent = 
+            `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    
     // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
     audioPlayer.play().catch(e => {
         console.error("Audio playback error:", e);
@@ -158,6 +161,8 @@ function Listen(index) {
 
 function GoToQuestion(index) {
     Question(index);
+    timerElement.textContent = 
+            `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
 function Question(index) {
@@ -168,6 +173,8 @@ function Question(index) {
 
     questionSection.style.display = 'block';
     audioSection.style.display = 'none';
+    timerElement.textContent = 
+            `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     
     // A. 載入問題文本
     currentQuestionDisplay.textContent = question.number;
