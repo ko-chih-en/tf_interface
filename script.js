@@ -177,6 +177,8 @@ function Question(index) {
 
     // B. 生成選項 (單選或多選)
     const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
+
+    alert("變數設定完成");
     
     question.options.forEach((optionText, i) => {
         const optionLetter = String.fromCharCode(65 + i); // A, B, C, D...
@@ -195,16 +197,14 @@ function Question(index) {
         label.textContent = optionText;
 
         // 檢查是否有儲存的答案，並設定為 checked
-        //const savedAnswer = userAnswers[question.id];
-        //if (savedAnswer) {
-        //    if (inputType === 'radio' && savedAnswer === optionLetter) {
-        //        input.checked = true;
-        //    } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
-        //        input.checked = true;
-        //    }
-        //}
-
-        alert("變數設定完成");
+        const savedAnswer = userAnswers[question.id];
+        if (savedAnswer) {
+            if (inputType === 'radio' && savedAnswer === optionLetter) {
+                input.checked = true;
+            } else if (inputType === 'checkbox' && savedAnswer.includes(optionLetter)) {
+                input.checked = true;
+            }
+        }
         
         optionItem.append(input, label);
         optionsArea.appendChild(optionItem);
