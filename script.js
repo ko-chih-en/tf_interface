@@ -2,7 +2,7 @@
 const ListenData = [
     {
         audio_url: 'audio/C1.mp3',
-        image_url: 'image/cpm/01.png'
+        image_url: 'image/cpm/03.png'
     }
 ];
 
