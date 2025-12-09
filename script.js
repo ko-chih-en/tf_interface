@@ -146,7 +146,7 @@ function Listen(index) {
     
     timerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
-    minus = 0;
+    minus = 2;
     
     // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
     audioPlayer.play().catch(e => {
