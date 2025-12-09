@@ -53,7 +53,7 @@ let userAnswers = {};
 let totalQuestions = 5;
 let timeLeft = 6.5 * 60; // 30分鐘 (秒)
 let timerInterval;
-let minus = 0;
+let minus = 3;
 
 // --- DOM 元素選擇器 ---
 const welcomePage = document.getElementById('welcome-page');
