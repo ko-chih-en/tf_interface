@@ -10,12 +10,12 @@ const ExamData = [
         id: 1,
         number: 1,
         type: 'single',
-        question_text: "根據講座內容，為何教授特別提到木星的『大紅斑』？",
+        question_text: "Why does the student go to see the professor?",
         options: [
-            "A. 證明它是太陽系中最古老的風暴。",
-            "B. 說明氣候變化如何影響行星。",
-            "C. 藉此解釋木星大氣層的化學成分。",
-            "D. 用作研究持久性氣候系統的範例。"
+            "To ask him to explain an opinion he expressed in his lecture",
+            "To find out where she can view original advertising posters",
+            "To ask him about an unusual art form",
+            "To thank him for recommending a show at an art gallery"
         ],
         correct_answer: "D"
     },
@@ -23,27 +23,53 @@ const ExamData = [
         id: 2,
         number: 2,
         type: 'single',
-        question_text: "學生提出的問題，最可能引導教授討論哪個話題？",
+        question_text: "What led to the student’s interest in tableaux vivant?",
         options: [
-            "A. 衛星對木星磁場的影響。",
-            "B. 土星環與木星環的區別。",
-            "C. 太空探測器觀察到的新發現。",
-            "D. 木星上是否存在生命的可能性。"
+            "She heard about a festival that features them",
+            "She read about them in a novel",
+            "She studied them in a class about types of theater",
+            "She saw a documentary film about them"
         ],
-        correct_answer: "C"
+        correct_answer: "B"
     },
     {
         id: 3,
         number: 3,
-        type: 'multiple',
-        question_text: "下列哪兩項因素，有助於維持大紅斑的巨大規模？ (選擇兩項)",
+        type: 'single',
+        question_text: "Why does the student mention movie theaters of the 1920s?",
         options: [
-            "A. 木星的快速自轉。",
-            "B. 缺乏固體行星表面。",
-            "C. 受到周圍衛星的引力拉扯。",
-            "D. 內部熱能不斷產生。"
+            "To suggest a reason for the declining popularity of tableaux vivants during that decade",
+            "To propose that tableaux vivants helped lead to the development of cinema",
+            "To express her preference for live theater as opposed to cinema",
+            "To point out how rapidly entertainment technology changed during the twentieth century"
         ],
-        correct_answers: ["A", "B"]
+        correct_answers: "A"
+    },
+    {
+        id: 4,
+        number: 4,
+        type: 'single',
+        question_text: "What best describes the professor’s attitude about present-day tableau vivant?",
+        options: [
+            "He doubts that their earlier goals can be supported by the use of computer technology",
+            "He is concerned that they blur the line between art and entertainment",
+            "He is hopeful that they will inspire viewers to create original works of their own",
+            "He believes they can enhance the general public’s understanding of artwork"
+        ],
+        correct_answers: "D"
+    },
+    {
+        id: 5,
+        number: 5,
+        type: 'single',
+        question_text: "Why does the student say this:",
+        options: [
+            "To express surprise that the professor regards advertising as an art form",
+            "To show that she has understood a humorous remark the professor made",
+            "To suggest that the professor’s words have made her think of something else",
+            "To note a similarity between the professor’s opinion and an opinion that she has recently read"
+        ],
+        correct_answers: "C"
     }
 ];
 
