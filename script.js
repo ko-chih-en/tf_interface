@@ -173,12 +173,12 @@ function Question(index) {
     currentQuestionDisplay.textContent = question.number;
     questionTextElement.textContent = question.question_text;
     document.getElementById('q-number-display').textContent = index + 1;
+    alert("變數設定完成1");
     optionsArea.innerHTML = ''; // 清空舊選項
+    alert("變數設定完成2");
 
     // B. 生成選項 (單選或多選)
     const inputType = question.type === 'multiple' ? 'checkbox' : 'radio';
-
-    alert("變數設定完成");
     
     question.options.forEach((optionText, i) => {
         const optionLetter = String.fromCharCode(65 + i); // A, B, C, D...
