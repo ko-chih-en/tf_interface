@@ -53,7 +53,7 @@ let userAnswers = {};
 let totalQuestions = 5;
 let timeLeft = 6.5 * 60; // 30分鐘 (秒)
 let timerInterval;
-let minus = 3;
+let minus = 0;
 
 // --- DOM 元素選擇器 ---
 const welcomePage = document.getElementById('welcome-page');
@@ -126,7 +126,7 @@ function startTest() {
     audiotimerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     startTimer();
-    minus = 1;
+    minus = 0;
     
     // 載入並播放第一道題目 (應順利播放，因為使用者已互動)
     Listen(0);
@@ -149,7 +149,7 @@ function Listen(index) {
     
     audiotimerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
-    minus = 2;
+    minus = 0;
     
     // 嘗試播放音檔。因為這是使用者點擊後觸發，成功率會很高。
     audioPlayer.play().catch(e => {
@@ -163,10 +163,10 @@ function Listen(index) {
 }
 
 function GoToQuestion(index) {
-    Question(index);
     audiotimerElement.textContent = 
             `00:${String(Math.floor(timeLeft / 60)).padStart(2, '0')}:${String(timeLeft % 60).padStart(2, '0')}`;
     minus = 0;
+    Question(index);
 }
 
 function Question(index) {
